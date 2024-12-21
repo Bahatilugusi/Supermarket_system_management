@@ -102,3 +102,30 @@ m:
     }
     goto m;
 }
+
+void shopping ::buyer()
+{
+m:
+    int choice;
+    cout << "\n\t\tBuyer Menu";
+    cout << "\n\t1.Buy Product";
+    cout << "\n\tGo back";
+    cout << "Enter your choice";
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        receipt();
+        break;
+
+    case 2:
+        menu();
+        break;
+
+    default:
+        cout << "\nInvalid choice";
+        break;
+    }
+    goto m;
+}
