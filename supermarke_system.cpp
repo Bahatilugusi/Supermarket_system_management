@@ -292,3 +292,27 @@ void shopping ::list()
     }
     data.close();
 }
+
+void shopping::receipt()
+{
+    fstream data;
+
+    int arrc[100];
+    int arrq[100];
+    char choice;
+    int c = 0;
+    float amount = 0;
+    float dis = 0;
+    float total = 0;
+
+    cout << "\n\t\t\t\tRECEIPT";
+    data.open("database.txt", ios::in);
+    if (!data)
+    {
+        cout << "\n\tEmpty database.";
+    }
+    else
+    {
+        data.close();
+        list();
+        cout << "\n\t\t\tPlease place the order";
