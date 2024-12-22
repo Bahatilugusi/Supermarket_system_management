@@ -180,3 +180,16 @@ m:
     }
     cout << "\n\t\tRecord inserted!";
 }
+void shopping::edit()
+{
+    fstream data, data1;
+    int pkey;
+    int token = 0;
+    int c;
+    float p;
+    float d;
+    string n;
+
+    cout << "\n\t\t Modify the record";
+    cout << "\n\t\tProduct code: ";
+    cin >> pkey;
