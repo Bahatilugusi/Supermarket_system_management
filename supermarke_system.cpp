@@ -237,3 +237,58 @@ void shopping::edit()
         }
     }
 }
+
+void shopping::rem()
+{
+    fstream data, data1;
+    int pkey;
+    int token = 0;
+    cout << "\n\t Delete product";
+    cout << "\n\t Product code: ";
+    cin >> pkey;
+    data.open("database.txt", ios::in);
+    if (!data)
+    {
+        cout << "File doesn't exist";
+    }
+    else
+    {
+        data1.open("database1.txt", ios::app | ios::out);
+        data >> pcode >> pname >> price >> dis;
+        while (data.eof())
+        {
+            if (pcode == pkey)
+            {
+                cout << "\n\tProduct delete successful";
+                token++;
+            }
+            else
+            {
+                data1 << " " << pcode << " " << pname << " " << price << " " << dis << "\n";
+            }
+            data >> pcode >> pname >> price >> dis;
+        }
+        data.close();
+        data1.close();
+        remove("database.txt");
+        rename("database1.txt", "database.txt");
+        if (token == 0)
+        {
+            cout << "\n\nRecord not found";
+        }
+    }
+}
+
+void shopping ::list()
+{
+    fstream data;
+    data.open("database.txt", ios::in);
+    cout << "\n\nProNo\tName\tprice";
+    data >> pcode >> pname >> price >> dis;
+    while (!data.eof())
+    {
+        cout << pcode << "\t\t" << pname << "\t\t" << price << "\n";
+        data >> pcode >> pname >> price >> dis;
+    }
+    data.close();
+}
