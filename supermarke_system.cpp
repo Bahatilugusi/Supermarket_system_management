@@ -358,3 +358,11 @@ void shopping::receipt()
         }
         data.close();
     }
+     cout << "\n\n_____________________________";
+    cout << "\n Total Amount : " << total;
+}
+int main()
+{
+    shopping s;
+    s.menu();
+}
