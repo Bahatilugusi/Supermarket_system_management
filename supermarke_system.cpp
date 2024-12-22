@@ -129,3 +129,54 @@ m:
     }
     goto m;
 }
+
+void shopping ::add()
+{
+m:
+    fstream data;
+    int c;
+    int token = 0;
+    float p;
+    float d;
+    string n;
+
+    cout << "\n\t\tAdd new Product";
+    cout << "\n\tProduct code: ";
+    cin >> pcode;
+    cout << "Name of the Product: ";
+    cin >> pname;
+    cout << "\n\tPrice of the Product: ";
+    cout << "Discout on the Product: ";
+    cin >> dis;
+
+    data.open("database.txt", ios::in);
+    if (!data)
+    {
+        data.open("database.txt", ios::app | ios::out);
+        data << " " << pname << " " << price << " " << dis << "\n";
+        data.close();
+    }
+    else
+    {
+        data >> c >> n >> p >> d;
+        while (!data.eof())
+        {
+            if (c == pcode)
+            {
+                token++;
+            }
+            data >> c >> n >> p >> d;
+        }
+        data.close();
+
+        if (token == 1)
+            goto m;
+        else
+        {
+            data.open("database.txt", ios::app | ios::out);
+            data << " " << pname << " " << price << " " << dis << "\n";
+            data.close();
+        }
+    }
+    cout << "\n\t\tRecord inserted!";
+}
