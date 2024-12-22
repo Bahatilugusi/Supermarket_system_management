@@ -316,3 +316,45 @@ void shopping::receipt()
         data.close();
         list();
         cout << "\n\t\t\tPlease place the order";
+          do
+        {
+        m:
+            cout << "\nEnter product code: ";
+            cin >> arrc[c];
+            cout << "\nEnter the product quantity: ";
+            cin >> arrq[c];
+            for (int i = 0; i < c; i++)
+            {
+                if (arrc[c] == arrc[i])
+                {
+                    cout << "\n\nDuplicate product code. Please try again";
+                    goto m;
+                }
+            }
+            c++;
+            cout << "\n\nDo you want to buy another product? if Yes then pess y else no: ";
+            cin >> choice;
+        } while (choice == "y");
+
+        cout << "\n\n\t\t-----RECEIPT-------\n";
+        cout << "\nProduct No\t Product quantity\tAmount \tAmount with discount";
+
+        for (int i = 0; i < c; i++)
+        {
+            data.open("database.txt", ios::in);
+            data >> pcode >> pname >> price >> dis;
+            while (!data.eof())
+            {
+                if (pcode == arrc[i])
+                {
+                    amount = price * arrq[i];
+                    dis = amount - (amount * dis / 100);
+                    total = total + dis;
+                    cout << "\n"
+                         << pcode << "\t\t" << arrq[i] << "\t\t" << price << "\t" << amount << "\t\t" << dis;
+                }
+                data >> pcode >> pname >> price >> dis;
+            }
+        }
+        data.close();
+    }
